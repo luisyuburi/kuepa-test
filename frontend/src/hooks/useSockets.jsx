@@ -17,7 +17,6 @@ const useSocket = () => {
 
     socketRef.current.on(NEW_MESSAGE, (message) => {
       setUserMessage(message);
-      console.log("message", message);
     });
 
     return () => {
@@ -26,9 +25,8 @@ const useSocket = () => {
   }, []);
 
   const sendMessage = (messageBody) => {
-    console.log("auth", auth.user);
     const newMessage = {
-      userId: JSON.parse(auth.user).data.id,
+      userId: auth.user.data.id,
       content: messageBody,
     };
     socketRef.current.emit(USER_MESSAGE, newMessage);

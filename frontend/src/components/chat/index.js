@@ -53,7 +53,6 @@ export default function Chat() {
   useEffect(() => {
     if (socket.userMessage !== "") {
       addMessage(socket.userMessage);
-      console.log("Socket messages", socket.userMessage);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,7 +91,6 @@ export default function Chat() {
     const response = await getAll();
     if (response.status === 200) {
       const messageResponse = await response.json();
-      console.log("messageResponse", messageResponse);
       const messageList = [...messages, ...messageResponse];
       setMessages(messageList);
     }
@@ -108,7 +106,7 @@ export default function Chat() {
         >
           {messages.map((msg) => (
             <React.Fragment>
-              {msg.user.id === JSON.parse(auth.user).data.id ? (
+              {msg.user.id === auth.user.data.id ? (
                 <MessageRight
                   message={msg.content}
                   timestamp={msg.createdAt}

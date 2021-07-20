@@ -6,11 +6,10 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log(user);
     if (!user) {
       const loggedUser = localStorage.getItem("user");
       if (loggedUser) {
-        setUser(loggedUser);
+        setUser(JSON.parse(loggedUser));
       }
     }
   }, [user]);
@@ -24,9 +23,8 @@ function useProvideAuth() {
         data: userResponse.user,
       };
       localStorage.setItem("user", JSON.stringify(userObject));
-      console.log("response", userObject);
+      setUser(userObject);
     }
-    setUser("user");
     cb(response);
   };
 

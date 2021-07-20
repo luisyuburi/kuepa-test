@@ -99,7 +99,6 @@ export default function SignIn(props) {
       }
     });
   };
-  console.log(validation);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
